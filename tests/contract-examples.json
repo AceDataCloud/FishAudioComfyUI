@@ -1,0 +1,100 @@
+[
+  {
+    "name": "fish_create_model-1",
+    "tool": "fish_create_model",
+    "inputs": {
+      "title": "Owned voice",
+      "voices": "https://example.org/reference.mp3"
+    },
+    "method": "POST",
+    "path": "/fish/model",
+    "body": {
+      "voices": "https://example.org/reference.mp3"
+    }
+  },
+  {
+    "name": "fish_create_voice-2",
+    "tool": "fish_create_voice",
+    "inputs": {
+      "voice_url": "https://example.org/reference.mp3",
+      "title": "Owned voice"
+    },
+    "method": "POST",
+    "path": "/fish/voices",
+    "body": {
+      "voice_url": "https://example.org/reference.mp3"
+    }
+  },
+  {
+    "name": "fish_generate_audio-3",
+    "tool": "fish_generate_audio",
+    "inputs": {
+      "text": "Hello",
+      "model": "s2.1-pro",
+      "reference_id": "[\"voice1\",\"voice2\"]",
+      "prosody": "{\"speed\":1.1}"
+    },
+    "method": "POST",
+    "path": "/fish/tts",
+    "body": {
+      "text": "Hello",
+      "reference_id": [
+        "voice1",
+        "voice2"
+      ],
+      "prosody": {
+        "speed": 1.1
+      }
+    },
+    "headers": {
+      "model": "s2.1-pro"
+    },
+    "absent": [
+      "model"
+    ]
+  },
+  {
+    "name": "fish_search_voices-4",
+    "tool": "fish_search_voices",
+    "inputs": {
+      "query": "test",
+      "limit": 2
+    },
+    "method": "GET",
+    "path": "/fish/model",
+    "body": {},
+    "query": {
+      "page_size": 2,
+      "page_number": 1,
+      "title": "test"
+    },
+    "read_only": true
+  },
+  {
+    "name": "fish_get_voice-5",
+    "tool": "fish_get_voice",
+    "inputs": {
+      "id": "owned/voice"
+    },
+    "method": "GET",
+    "path": "/fish/model/owned%2Fvoice",
+    "body": {},
+    "read_only": true
+  },
+  {
+    "name": "fish_tasks_retrieve_batch-6",
+    "tool": "fish_tasks_retrieve_batch",
+    "inputs": {
+      "ids": "[\"owned-task\"]"
+    },
+    "method": "POST",
+    "path": "/fish/tasks",
+    "body": {
+      "action": "retrieve_batch",
+      "ids": [
+        "owned-task"
+      ]
+    },
+    "read_only": true
+  }
+]
