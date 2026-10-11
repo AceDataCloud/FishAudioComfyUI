@@ -1,0 +1,18 @@
+[project]
+name = "fish-audio"
+version = "0.1.0"
+description = "Fish Audio Dify-parity tools through Ace Data Cloud for ComfyUI"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = ["requests>=2.31,<3", "jsonschema>=4,<5"]
+classifiers = ["Operating System :: OS Independent"]
+
+[project.urls]
+Repository = "https://github.com/AceDataCloud/FishAudioComfyUI"
+Documentation = "https://github.com/AceDataCloud/FishAudioComfyUI#readme"
+"Bug Tracker" = "https://github.com/AceDataCloud/FishAudioComfyUI/issues"
+
+[tool.comfy]
+PublisherId = "acedatacloud"
+DisplayName = "Fish Audio by Ace Data Cloud"
+Icon = "https://raw.githubusercontent.com/AceDataCloud/FishAudioComfyUI/main/assets/logo-400.png"
