@@ -1,8 +1,14 @@
 # Ace Data Cloud 的 ComfyUI Fish Audio 节点
 
-本包独立对应 [FishAudioDify](https://github.com/AceDataCloud/FishAudioDify)，覆盖快照 `c931c58` 中的 **7 个正式工具定义**和 **3 个固定 model ID**。节点调用 Ace Data Cloud 云 API，无需本地模型或显卡；收费以[当前价格](https://platform.acedata.cloud/models)为准。
+本包独立对应 [FishAudioDify](https://github.com/AceDataCloud/FishAudioDify)，覆盖快照 `c931c58` 中的 **7 个正式工具定义**和 **3 个固定 model ID**。节点调用 Ace Data Cloud 云 API，无需本地模型或显卡；收费以[当前价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=fishaudiocomfyui_readme_zh_cn_pricing)为准。
 
 [English guide](../README.md)
+
+## 获取 API Key
+
+1. 登录 [Ace Data Cloud → 应用](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=fishaudiocomfyui_readme_zh_cn_api_key)。新账户没有通用应用时，先选择**初始化通用应用**。
+2. 打开**通用应用**，确认已开通本节点使用的服务。单服务应用的 Key 只限该服务。可复制已有 API Key；需要独立 Key 时，选择**管理 Key → 创建**，命名为 `ComfyUI`。
+3. 只复制 Token 字符串，不加 `Bearer ` 或引号。平台管理 Token 不能代替节点调用 API 的 Key。若启用**允许的 API**限制，需同时包含工作流用到的提交和任务查询路径；收费动作前核对当前价格与 Credits 余额。
 
 Registry 版本激活后，在 ComfyUI-Manager 搜索 **Fish Audio**，核对发布者 `acedatacloud` 和包名 **Fish Audio by Ace Data Cloud**，安装并重启。Registry ID 是 `fish-audio`，源码仓库为 `AceDataCloud/FishAudioComfyUI`。源码和上传成功不等于市场可安装。
 
