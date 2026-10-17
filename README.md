@@ -6,7 +6,9 @@ Use the current [FishAudioDify](https://github.com/AceDataCloud/FishAudioDify) t
 
 ## Install
 
-When the Registry version is active, search **Fish Audio** in ComfyUI-Manager, confirm publisher **acedatacloud** and package **Fish Audio by Ace Data Cloud**, install, and restart. Registry ID: `fish-audio`. Source repository: `AceDataCloud/FishAudioComfyUI`. Source code, CI, or Registry upload alone does not prove a market install.
+Open **Manager → Custom Nodes Manager** and search **Ace Data Cloud**. Select **Fish Audio by Ace Data Cloud**, confirm publisher **acedatacloud** and source repository [`AceDataCloud/FishAudioComfyUI`](https://github.com/AceDataCloud/FishAudioComfyUI), then click **Install**. In **Select Version**, explicitly select the approved Registry stable release **0.1.0**. The normal dialog may initially highlight **nightly**; do not accept it for this stable-release tutorial. Keep dependency installation enabled. After **Restart Required**, restart ComfyUI and refresh the browser. Registry ID: `fish-audio`.
+
+This Registry stable installation was verified on **2026-10-16 with original ComfyUI 0.41.0 on Linux CPU**. That test did not submit a generation or chat request. Newer host versions and each paid action require their own checks; model availability and price remain subject to the current service rules.
 
 For local source testing, clone this repository into `ComfyUI/custom_nodes/FishAudioComfyUI` and run `python -m pip install -r requirements.txt` in ComfyUI's environment, then restart. Native media loaders require ComfyUI 0.39.0 or newer. This package uses ComfyUI's existing image/audio/video libraries for decoding.
 
