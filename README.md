@@ -1,16 +1,22 @@
 # Fish Audio for ComfyUI by Ace Data Cloud
 
-Use the current [FishAudioDify](https://github.com/AceDataCloud/FishAudioDify) tool contracts as independent ComfyUI nodes. This package exposes all **7 Dify tool definitions** and **3 fixed model IDs** from source snapshot `c931c58`. It calls the hosted Ace Data Cloud API; no local model or GPU is needed. Paid actions consume Credits at the [current service price](https://platform.acedata.cloud/models).
+Use the current [FishAudioDify](https://github.com/AceDataCloud/FishAudioDify) tool contracts as independent ComfyUI nodes. This package exposes all **7 Dify tool definitions** and **3 fixed model IDs** from source snapshot `c931c58`. It calls the hosted Ace Data Cloud API; no local model or GPU is needed. Paid actions consume Credits at the [current service price](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=fishaudiocomfyui_readme_en_pricing).
 
-[简体中文](docs/README.zh-CN.md) · [Ace Data Cloud](https://platform.acedata.cloud) · [Issues](https://github.com/AceDataCloud/FishAudioComfyUI/issues)
+[简体中文](docs/README.zh-CN.md) · [Ace Data Cloud](https://platform.acedata.cloud?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=fishaudiocomfyui_readme_en_home) · [Issues](https://github.com/AceDataCloud/FishAudioComfyUI/issues)
 
 ## Install
 
-When the Registry version is active, search **Fish Audio** in ComfyUI-Manager, confirm publisher **acedatacloud** and package **Fish Audio by Ace Data Cloud**, install, and restart. Registry ID: `fish-audio`. Source repository: `AceDataCloud/FishAudioComfyUI`. Source code, CI, or Registry upload alone does not prove a market install.
+Open **Manager → Custom Nodes Manager** and search **Ace Data Cloud**. Select **Fish Audio by Ace Data Cloud**, confirm publisher **acedatacloud** and source repository [`AceDataCloud/FishAudioComfyUI`](https://github.com/AceDataCloud/FishAudioComfyUI), then click **Install**. In **Select Version**, explicitly select the approved Registry stable release **0.1.0**. The normal dialog may initially highlight **nightly**; do not accept it for this stable-release tutorial. Keep dependency installation enabled. After **Restart Required**, restart ComfyUI and refresh the browser. Registry ID: `fish-audio`.
+
+This Registry stable installation was verified on **2026-10-16 with original ComfyUI 0.41.0 on Linux CPU**. That test did not submit a generation or chat request. Newer host versions and each paid action require their own checks; model availability and price remain subject to the current service rules.
 
 For local source testing, clone this repository into `ComfyUI/custom_nodes/FishAudioComfyUI` and run `python -m pip install -r requirements.txt` in ComfyUI's environment, then restart. Native media loaders require ComfyUI 0.39.0 or newer. This package uses ComfyUI's existing image/audio/video libraries for decoding.
 
 ## Key and tool inputs
+
+1. Sign in to [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=fishaudiocomfyui_readme_en_api_key). If your account has no General application, choose **Initialize General Application**.
+2. Open **General application** and check access to the service used by this package. A service-specific application key is limited to that service. Copy an existing API key, or choose **Manage Keys → Create** for a separate key named `ComfyUI`.
+3. Copy only the token string, without `Bearer ` or quotation marks. A platform management token is not the API key these nodes use. If you enable **Allowed APIs**, include every submission and task-query path used by your workflow. Check current pricing and available Credits before a paid action.
 
 Set `ACEDATACLOUD_API_KEY` (or `ACEDATACLOUD_API_TOKEN`) in the **ComfyUI process environment** and restart. Keep the key out of workflow JSON, screenshots, issues, and the repository.
 
