@@ -5,14 +5,54 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: python -m pip install -r requirements.txt
       - run: python -m unittest discover -s tests -v
       - run: python -m py_compile __init__.py client.py api_contracts.py nodes.py
+      - name: Pack versioned custom node without Registry credentials
+        env:
+          DO_NOT_TRACK: '1'
+          COMFY_NO_TELEMETRY: '1'
+        run: |
+          python -m pip install comfy-cli==1.22.0
+          comfy node pack
+          python - <<'PY'
+          import hashlib, json, subprocess, tomllib, zipfile
+          from pathlib import Path
+          metadata = tomllib.loads(Path('pyproject.toml').read_text())
+          with zipfile.ZipFile('node.zip') as archive:
+              members = archive.namelist()
+              required = ['__init__.py', 'client.py', 'nodes.py', 'pyproject.toml', 'requirements.txt', 'LICENSE', 'README.md', 'docs/README.zh-CN.md', 'docs/screenshot-sources.json']
+              assert set(required).issubset(members)
+              assert not any(name.startswith(('.git/', '.github/', 'tests/')) or '/__pycache__/' in name or name.startswith('.env') for name in members)
+              for file in [*Path('.').glob('*.py'), *Path('examples').glob('*.json'), *Path('docs/images').glob('*.png')]:
+                  assert archive.read(file.as_posix()) == file.read_bytes(), file
+              packaged = tomllib.loads(archive.read('pyproject.toml').decode())
+              assert packaged == metadata
+          digest = hashlib.sha256(Path('node.zip').read_bytes()).hexdigest()
+          Path('node.zip.sha256').write_text(digest + '  node.zip\n')
+          source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          Path('package-manifest.json').write_text(json.dumps({'id': metadata['project']['name'], 'version': metadata['project']['version'], 'publisher': metadata['tool']['comfy']['PublisherId'], 'source_sha': source, 'sha256': digest, 'size': Path('node.zip').stat().st_size, 'members': members, 'packager': 'comfy-cli1.22.0 node pack', 'registry_uploaded': False}, indent=2) + '\n')
+          PY
+      - name: Preserve installable versioned package
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: comfyui-node-package-${{ github.sha }}
+          path: |
+            node.zip
+            node.zip.sha256
+            package-manifest.json
+          retention-days: 30
