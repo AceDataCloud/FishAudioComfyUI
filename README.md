@@ -29,7 +29,7 @@ For local source testing, clone this repository into `ComfyUI/custom_nodes/FishA
 
 ### Copy or create your API Token
 
-Sign in/register and initialize **Applications → General application** if needed. Copy an existing permitted API Token, or use **Manage Keys → Create** for a dedicated `ComfyUI` key. Check service access, expiry/Allowed APIs, Credits balance and current price first.
+On the **General Application** card, click the copy button beside **API KEY**, or use **Manage Keys → Create** for a dedicated `ComfyUI` key. Check service access, expiry/Allowed APIs, Credits balance and current price first.
 
 ![Ace Applications: copy Token or Manage Keys](docs/images/get-api-key-en.png)
 
@@ -37,9 +37,9 @@ Sign in/register and initialize **Applications → General application** if need
 
 These masked **2026-10-08** Ace Console images are reused from SunoDify. The sample name `Dify tutorial` should be `ComfyUI` here; no credential was created for this guide. Configure only the Token string in the **actual process that launches ComfyUI** (`ACEDATACLOUD_API_KEY`), then restart. There is no Key widget in these nodes; never paste it into a prompt, JSON parameter, workflow or screenshot. An export in another terminal does not configure an already-running Desktop process.
 
-1. Sign in to [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=comfyui&utm_medium=referral&utm_campaign=evergreen&utm_content=fishaudiocomfyui_readme_en_api_key). If your account has no General application, choose **Initialize General Application**.
-2. Open **General application** and check access to the service used by this package. A service-specific application key is limited to that service. Copy an existing API key, or choose **Manage Keys → Create** for a separate key named `ComfyUI`.
-3. Copy only the token string, without `Bearer ` or quotation marks. A platform management token is not the API key these nodes use. If you enable **Allowed APIs**, include every submission and task-query path used by your workflow. Check current pricing and available Credits before a paid action.
+1. Sign in to [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=comfyui&utm_medium=referral&utm_campaign=evergreen&utm_content=fishaudiocomfyui_readme_en_api_key). The page prepares the **General Application** card automatically.
+2. Check that your application has access to this service. A service-specific key is limited to that service. Click the copy button beside **API KEY**, or choose **Manage Keys → Create** for a separate key named `ComfyUI`.
+3. Copy only the token string, without `Bearer ` or quotation marks. A platform management token is not the API key these nodes use. If you enable **Allowed APIs**, include every submission and task-query path used by your workflow. Check current pricing before a paid action. If the application balance is low, click **Top Up** on its card.
 
 For a terminal launch, set the Token privately and start ComfyUI from that same terminal:
 
